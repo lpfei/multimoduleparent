@@ -22,7 +22,7 @@ public class PageUtil {
         }
         String pageNum = request.getParameter("pageNum");
         String pageSize = request.getParameter("pageSize");
-        if( NullUtil.isNotEmpty(pageNum) &&  NullUtil.isNotEmpty(pageSize) ){
+        if( NullUtil.isNotNullOrEmpty(pageNum) &&  NullUtil.isNotNullOrEmpty(pageSize) ){
             return new PageModel(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
         }
         return  new PageModel();
@@ -30,10 +30,10 @@ public class PageUtil {
     public static PageModel initDataTablePage(Integer pageNumber, Integer pageSize) {
         int pNum = 1;
         int pSize = 10;
-        if (NullUtil.isNotEmpty(pageNumber)) {
+        if (NullUtil.isNotNullOrEmpty(pageNumber)) {
             pNum = pageNumber;
         }
-        if (NullUtil.isNotEmpty(pageSize)) {
+        if (NullUtil.isNotNullOrEmpty(pageSize)) {
             pSize = pageSize;
         }
         pSize = pSize > 50 ? 50 : pSize;
