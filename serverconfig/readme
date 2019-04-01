@@ -1,0 +1,21 @@
+分布式配置中心
+
+configServer 未注册到 EurekaServer时配置url:
+spring:
+  application:
+    name: server-config-client
+  cloud:
+    config:
+      name: application
+      profile: dev
+      uri: http://172.17.0.7:8888/
+      label: master
+      discovery:
+        service-id: server-config
+        enabled: true
+      server:
+        bootstrap: true
+ 当:
+1、将SpringCloud ConfigServer注册到 EurekaServer，以便ConfigClient以服务的方式引用ConfigServer
+
+2、客户端不再引用 ConfigServer的url，而是引用 Eureka服务id
