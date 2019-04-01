@@ -10,17 +10,17 @@ package com.multi.webcommon.model;
  */
 public enum CodeMessageEnum implements CodeMessage<String> {
 
-    signError("10001", "签名错误"),
+    SIGN_ERROR("10001", "签名错误"),
 
-    paramError("20001", "参数错误"),
+    PARAM_ERROR("20001", "参数错误"),
 
-    bugError("30001", "处理错误"),
+    BUG_ERROR("30001", "处理错误"),
 
-    error("40001", "处理错误"),
+    ERRER("40001", "处理错误"),
 
-    oftenError("43001", "请求频繁,请稍后重试"),
+    OFTEN_ERROR("43001", "请求频繁,请稍后重试"),
 
-    permissionError("50001", "暂无权限");
+    PERMISSION_ERROR("50001", "暂无权限");
 
 
     String code;

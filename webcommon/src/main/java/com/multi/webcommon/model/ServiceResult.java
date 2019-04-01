@@ -142,7 +142,7 @@ public class ServiceResult<T, C> implements Serializable {
     public static void main(String[] args) {
         ServiceResult<List<String>, String> s = ServiceResult.success(Arrays.asList("1", "2", "3"));
         s.isSuccess(); //true
-        ServiceResult<?, String> e1 = ServiceResult.error(CodeMessageEnum.error);
+        ServiceResult<?, String> e1 = ServiceResult.error(CodeMessageEnum.ERRER );
         e1.isSuccess(); //false
         ServiceResult<?, Long> e2 = ServiceResult.error(new ServiceResult.DefaultMessage(100, ""));
         e2.isSuccess(); //false

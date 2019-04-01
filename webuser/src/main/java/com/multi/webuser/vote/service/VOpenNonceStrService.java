@@ -26,7 +26,7 @@ public class VOpenNonceStrService {
         VOpenNonceStrExample example = new VOpenNonceStrExample();
         example.createCriteria().andOpenIdEqualTo(openId);
         List<VOpenNonceStr> list = vOpenNonceStrMapper.selectByExample(example);
-        return NullUtil.isNotEmpty(list) ? list.get(0) : null;
+        return NullUtil.isNotNullOrEmpty(list) ? list.get(0) : null;
     }
 
     @Async
