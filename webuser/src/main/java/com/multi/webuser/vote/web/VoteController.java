@@ -2,7 +2,7 @@ package com.multi.webuser.vote.web;
 
 import com.multi.webcommon.anno.SessionScope;
 import com.multi.webcommon.constants.PUBConstants;
-import com.multi.webcommon.model.ServiceResult;
+import com.multi.webcommon.model.ServerResult;
 import com.multi.webuser.vote.service.VoteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +32,12 @@ public class VoteController {
         map.put("maxVotesList", voteService.maxVotesList());
         map.put("countVotes", voteService.countVotes());
         map.put("countJoinUser", voteService.countJoinUser());
-        return ServiceResult.success(map);
+        return ServerResult.success(map);
     }
 
     @RequestMapping(value = "vote/list", method = RequestMethod.GET)
     public Object list(@SessionScope(PUBConstants.SESSION_OPEN_ID) String openId) {
-        return ServiceResult.success(voteService.allList());
+        return ServerResult.success(voteService.allList());
     }
 
     @RequestMapping(value = "vote/doVote/{id}", method = RequestMethod.POST)
@@ -51,6 +51,6 @@ public class VoteController {
         Map map = new HashMap<>();
         map.put("model", voteService.selectByPrimaryKey(id));
         map.put("isVote", voteService.selectVoteLogByOpenId(openId));
-        return ServiceResult.success(map);
+        return ServerResult.success(map);
     }
 }

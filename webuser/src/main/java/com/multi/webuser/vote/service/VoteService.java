@@ -1,21 +1,17 @@
 package com.multi.webuser.vote.service;
 
-import com.multi.webcommon.constants.PUBConstants;
 import com.multi.webcommon.model.PageModel;
-import com.multi.webcommon.model.ServiceResult;
+import com.multi.webcommon.model.ServerResult;
 import com.multi.webcommon.util.PageUtil;
 import com.multi.webuser.vote.entity.VJoinUser;
 import com.multi.webuser.vote.entity.VJoinUserExample;
-import com.multi.webuser.vote.entity.VVoteLog;
 import com.multi.webuser.vote.entity.VVoteLogExample;
 import com.multi.webuser.vote.mapper.VJoinUserMapper;
 import com.multi.webuser.vote.mapper.VVoteLogMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -68,7 +64,7 @@ public class VoteService {
         return 1;
     }
 
-    public ServiceResult addVotes(String openId, Integer id) throws Exception {
+    public ServerResult addVotes(String openId, Integer id) throws Exception {
         /*VJoinUser user = selectByPrimaryKey(id);
         Date currDate = new JDateTime().convertToDate();
         Map<String, Object> time = commonXmlMapper.getActivityTime();
@@ -89,6 +85,6 @@ public class VoteService {
         log.setJoinUserId(id);
         log.setOpenId(openId);
         vVoteLogMapper.insertSelective(log);*/
-        return ServiceResult.success();
+        return ServerResult.success();
     }
 }

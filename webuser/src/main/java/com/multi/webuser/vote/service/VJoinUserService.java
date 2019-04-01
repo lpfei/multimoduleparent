@@ -2,7 +2,7 @@ package com.multi.webuser.vote.service;
 
 
 import com.multi.webcommon.model.PageModel;
-import com.multi.webcommon.model.ServiceResult;
+import com.multi.webcommon.model.ServerResult;
 import com.multi.webuser.vote.entity.VJoinUser;
 import com.multi.webuser.vote.entity.VJoinUserExample;
 import com.multi.webuser.vote.mapper.VJoinUserMapper;
@@ -73,13 +73,13 @@ public class VJoinUserService {
      * @return
      */
     @Transactional(rollbackFor = Exception.class)
-    public ServiceResult deleteByPrimaryKey(Integer id) {
+    public ServerResult deleteByPrimaryKey(Integer id) {
         VJoinUser managerPO = vJoinUserMapper.selectByPrimaryKey(id);
         if (managerPO == null) {
-            return ServiceResult.error("记录不存在");
+            return ServerResult.error("记录不存在");
         }
         vJoinUserMapper.deleteByPrimaryKey(id);
-        return ServiceResult.success();
+        return ServerResult.success();
     }
 
 

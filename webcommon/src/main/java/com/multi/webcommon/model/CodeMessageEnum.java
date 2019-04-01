@@ -16,7 +16,7 @@ public enum CodeMessageEnum implements CodeMessage<String> {
 
     BUG_ERROR("30001", "处理错误"),
 
-    ERRER("40001", "处理错误"),
+    ERROR("40001", "处理错误"),
 
     OFTEN_ERROR("43001", "请求频繁,请稍后重试"),
 

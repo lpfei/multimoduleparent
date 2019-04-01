@@ -11,7 +11,7 @@ import java.util.Objects;
  * @author lpfei
  * Date: 2019-02-21
  */
-public class ServiceResult<T, C> implements Serializable {
+public class ServerResult<T, C> implements Serializable {
     private static final String DEF_CODE = "000000";
     private static final CodeMessage<String> SUCCESS = new DefaultMessage<>(DEF_CODE, "success");
 
@@ -19,7 +19,7 @@ public class ServiceResult<T, C> implements Serializable {
     private CodeMessage<C> message;
     private boolean isSuccess;
 
-    ServiceResult(boolean isSuccess, CodeMessage<C> message, T data) {
+    ServerResult(boolean isSuccess, CodeMessage<C> message, T data) {
         this.data = data;
         this.message = message;
         this.isSuccess = isSuccess;
@@ -37,38 +37,38 @@ public class ServiceResult<T, C> implements Serializable {
         return isSuccess;
     }
 
-    public static <D, C> ServiceResult<D, String> success() {
-        ServiceResultBuilder<D, String> success = success(SUCCESS);
+    public static <D, C> ServerResult<D, String> success() {
+        ServerResultBuilder<D, String> success = success(SUCCESS);
         return success.build();
     }
 
-    public static <D> ServiceResult<D, String> success(D data) {
-        ServiceResultBuilder<D, String> success = success(SUCCESS);
+    public static <D> ServerResult<D, String> success(D data) {
+        ServerResultBuilder<D, String> success = success(SUCCESS);
         return success.data(data).build();
     }
 
-    public static <D, C> ServiceResult<D, C> error(CodeMessage<C> codeMessage) {
-        ServiceResultBuilder<D, C> builder = builder();
+    public static <D, C> ServerResult<D, C> error(CodeMessage<C> codeMessage) {
+        ServerResultBuilder<D, C> builder = builder();
         return builder.isSuccess(false).code(codeMessage.getCode()).message(codeMessage.getMessage()).build();
     }
 
-    public static <D, C> ServiceResult<D, C> error(CodeMessage<C> codeMessage, String msg) {
-        ServiceResultBuilder<D, C> builder = builder();
+    public static <D, C> ServerResult<D, C> error(CodeMessage<C> codeMessage, String msg) {
+        ServerResultBuilder<D, C> builder = builder();
         return builder.isSuccess(false).code(codeMessage.getCode()).message(msg).build();
     }
 
-    public static <D, C> ServiceResult<D, C> error(String message) {
-        ServiceResultBuilder<D, C> builder = builder();
+    public static <D, C> ServerResult<D, C> error(String message) {
+        ServerResultBuilder<D, C> builder = builder();
         return builder.isSuccess(false).code((C) DEF_CODE).message(message).build();
     }
 
-    public static <D, C> ServiceResultBuilder<D, C> success(CodeMessage<C> codeMessage) {
-        ServiceResultBuilder<D, C> builder = builder();
+    public static <D, C> ServerResultBuilder<D, C> success(CodeMessage<C> codeMessage) {
+        ServerResultBuilder<D, C> builder = builder();
         return builder.isSuccess(true).code(codeMessage.getCode()).message(codeMessage.getMessage());
     }
 
-    static <D, C> ServiceResultBuilder<D, C> builder() {
-        return new ServiceResultBuilder<>();
+    static <D, C> ServerResultBuilder<D, C> builder() {
+        return new ServerResultBuilder<>();
     }
 
     public static class DefaultMessage<C> implements CodeMessage<C>, Serializable {
@@ -93,40 +93,40 @@ public class ServiceResult<T, C> implements Serializable {
     }
 
 
-    public static class ServiceResultBuilder<T, C> {
+    public static class ServerResultBuilder<T, C> {
 
         private T data;
         private C code;
         private String message;
         private boolean isSuccess;
 
-        ServiceResultBuilder() { //package private
+        ServerResultBuilder() { //package private
         }
 
-        public ServiceResultBuilder<T, C> data(T data) {
+        public ServerResultBuilder<T, C> data(T data) {
             this.data = data;
             return this;
         }
 
-        ServiceResultBuilder<T, C> isSuccess(boolean isSuccess) {
+        ServerResultBuilder<T, C> isSuccess(boolean isSuccess) {
             this.isSuccess = isSuccess;
             return this;
         }
 
-        public ServiceResultBuilder<T, C> code(C code) {
+        public ServerResultBuilder<T, C> code(C code) {
             this.code = code;
             return this;
         }
 
-        public ServiceResultBuilder<T, C> message(String message) {
+        public ServerResultBuilder<T, C> message(String message) {
             this.message = message;
             return this;
         }
 
-        public ServiceResult<T, C> build() {
+        public ServerResult<T, C> build() {
             Objects.requireNonNull(code, "code");
             Objects.requireNonNull(message, "message");
-            return new ServiceResult<>(isSuccess, new DefaultMessage<>(code, message), data);
+            return new ServerResult<>(isSuccess, new DefaultMessage<>(code, message), data);
         }
     }
 
@@ -140,11 +140,11 @@ public class ServiceResult<T, C> implements Serializable {
     }
 
     public static void main(String[] args) {
-        ServiceResult<List<String>, String> s = ServiceResult.success(Arrays.asList("1", "2", "3"));
+        ServerResult<List<String>, String> s = ServerResult.success(Arrays.asList("1", "2", "3"));
         s.isSuccess(); //true
-        ServiceResult<?, String> e1 = ServiceResult.error(CodeMessageEnum.ERRER );
+        ServerResult<?, String> e1 = ServerResult.error(CodeMessageEnum.ERROR);
         e1.isSuccess(); //false
-        ServiceResult<?, Long> e2 = ServiceResult.error(new ServiceResult.DefaultMessage(100, ""));
+        ServerResult<?, Long> e2 = ServerResult.error(new ServerResult.DefaultMessage(100, ""));
         e2.isSuccess(); //false
         //ServiceResult{data=[1, 2, 3], message=DefaultMessage{code=00000000, message='success'}, isSuccess=true}
         System.out.println(s);
@@ -152,8 +152,8 @@ public class ServiceResult<T, C> implements Serializable {
         System.out.println(e1);
         //ServiceResult{data=null, message=DefaultMessage{code=1000, message='error'}, isSuccess=false}
         System.out.println(e2);
-        ServiceResult.success();
-        ServiceResult<?, Integer> e11 = ServiceResult.error("错误");
+        ServerResult.success();
+        ServerResult<?, Integer> e11 = ServerResult.error("错误");
 
     }
 

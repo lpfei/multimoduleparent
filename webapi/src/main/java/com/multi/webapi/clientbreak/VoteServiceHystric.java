@@ -2,7 +2,7 @@ package com.multi.webapi.clientbreak;
 
 import com.multi.webapi.Interface.VoteService;
 import com.multi.webcommon.model.CodeMessageEnum;
-import com.multi.webcommon.model.ServiceResult;
+import com.multi.webcommon.model.ServerResult;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,21 +15,21 @@ import org.springframework.stereotype.Component;
 public class VoteServiceHystric implements VoteService {
     @Override
     public Object index() {
-        return ServiceResult.error(CodeMessageEnum.error);
+        return ServerResult.error(CodeMessageEnum.ERROR);
     }
 
     @Override
     public Object list() {
-        return ServiceResult.error(CodeMessageEnum.error);
+        return ServerResult.error(CodeMessageEnum.ERROR);
     }
 
     @Override
     public Object doVote(Integer id) {
-        return ServiceResult.error(CodeMessageEnum.error);
+        return ServerResult.error(CodeMessageEnum.ERROR);
     }
 
     @Override
     public Object detail(Integer id) {
-        return ServiceResult.error(CodeMessageEnum.error);
+        return ServerResult.error(CodeMessageEnum.ERROR);
     }
 }
