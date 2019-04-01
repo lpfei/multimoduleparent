@@ -1,0 +1,4 @@
+外放api微服务
+断路器监控(Hystrix Dashboard)(Finchley版本)
+http://localhost:8765/actuator/hystrix.stream:具体请求数据
+http://localhost:8765/hystrix:监控界面

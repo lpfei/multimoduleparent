@@ -1,0 +1,49 @@
+server:
+  port: 8764
+spring:
+  application:
+    name: web-user-cli
+  main:
+    allow-bean-definition-overriding: true
+  redis:
+    database: 0
+    host: 192.168.1.199
+    port: 6379
+    password: 123456
+    timeout: 10000
+    lettuce:
+      pool:
+        max-active: 8
+        min-idle: 1
+        max-idle: 8
+        max-wait: 10000
+      shutdown-timeout: 10000
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.1.199:3306/vote?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    hikari:
+      username: root
+      password: root
+      minimum-idle: 5
+      idle-timeout: 10000
+      maximum-pool-size: 10
+      auto-commit: true
+      pool-name: MyHikariCP
+      max-lifetime: 10000
+      connection-timeout: 10000
+      connection-test-query: SELECT 1
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      probability: 1
+eureka:
+  instance:
+    hostname: 172.17.0.2
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+mybatis:
+  mapper-locations: classpath:com/multi/webuser/vote/mapper/**/*.xml
+  type-aliases-package: com.multi.webuser

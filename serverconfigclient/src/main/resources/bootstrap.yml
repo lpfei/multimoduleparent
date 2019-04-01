@@ -1,0 +1,35 @@
+server:
+  port: 8882
+spring:
+  application:
+    name: server-config-client
+  cloud:
+    config:
+      name: application
+      profile: dev
+#      uri: http://172.17.0.7:8888/
+      label: master
+      discovery:
+        service-id: server-config
+        enabled: true
+#      server:
+#        bootstrap: true
+#  redis:
+#      database: 0
+#      host: 192.168.1.199
+#      port: 6379
+#      password: 123456
+#      timeout: 10000
+#      lettuce:
+#        pool:
+#          max-active: 8
+#          min-idle: 1
+#          max-idle: 8
+#          max-wait: 10000
+#        shutdown-timeout: 10000
+eureka:
+  instance:
+    hostname: 172.17.0.2
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/

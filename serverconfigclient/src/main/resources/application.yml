@@ -1,0 +1,21 @@
+spring:
+  rabbitmq:
+    host: 192.168.1.109
+    port: 5672
+    username: lpfei
+    password: 123456
+  cloud:
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+  zipkin:
+    base-url: http://localhost:9411
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
+
+
+

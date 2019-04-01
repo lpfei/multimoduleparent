@@ -1,0 +1,3 @@
+分布式euruka服务中心
+可支持集群配置:
+eureka:instance:prefer-ip-address=true

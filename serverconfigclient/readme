@@ -1,0 +1,4 @@
+分布式配置中心客户端测试
+bootstrap.yml加载优先于application.yml
+rabbitmq 消息实现配置更新:post请求 http://localhost:8881/actuator/bus-refresh
+zipkin支持
